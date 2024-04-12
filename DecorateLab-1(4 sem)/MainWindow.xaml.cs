@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 using System.Windows;
 using StreamDecoratorLibrary;
@@ -15,51 +14,49 @@ namespace StreamDecoratorDemo
 
         private void UpdateTotalBytesWritten(long totalBytesWritten)
         {
-            txtTotalBytesWritten.Text = $"Total Bytes: {totalBytesWritten}";
+            TotalBytesWrittenText.Text = $"Total Bytes Written: {totalBytesWritten}";
         }
 
-        private void UpdateFileContent(string content)
-        {
-            txtFileContent.Text = content;
-        }
-
-        private void btnFileStream_Click(object sender, RoutedEventArgs e)
+        private void WriteToFile_Click(object sender, RoutedEventArgs e)
         {
             string filePath = "testfile.txt";
-            using (FileStream fs = new FileStream(filePath, FileMode.Create))
-            using (CountingStreamDecorator countingStream = new CountingStreamDecorator(fs))
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+            using (CountingStreamDecorator countingStream = new CountingStreamDecorator(fileStream))
             {
-                byte[] data = Encoding.UTF8.GetBytes("Это FileStream!");
+                byte[] data = Encoding.UTF8.GetBytes("Hello, FileStream!");
                 countingStream.Write(data, 0, data.Length);
                 UpdateTotalBytesWritten(countingStream.TotalBytesWritten);
             }
-            UpdateFileContent(File.ReadAllText(filePath));
         }
 
-        private void btnMemoryStream_Click(object sender, RoutedEventArgs e)
+        private void WriteToMemory_Click(object sender, RoutedEventArgs e)
         {
-            using (MemoryStream ms = new MemoryStream())
-            using (CountingStreamDecorator countingStream = new CountingStreamDecorator(ms))
+            using (MemoryStream memoryStream = new MemoryStream())
+            using (CountingStreamDecorator countingStream = new CountingStreamDecorator(memoryStream))
             {
-                byte[] data = Encoding.UTF8.GetBytes("Это MemoryStream!");
+                byte[] data = Encoding.UTF8.GetBytes("Hello, MemoryStream!");
                 countingStream.Write(data, 0, data.Length);
                 UpdateTotalBytesWritten(countingStream.TotalBytesWritten);
-                UpdateFileContent(Encoding.UTF8.GetString(ms.ToArray()));
+
+                // Прочитать данные из MemoryStream и отобразить их в текстовом блоке
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                StreamReader reader = new StreamReader(memoryStream);
+                string content = reader.ReadToEnd();
+                MessageBox.Show(content, "Data Written to Memory");
             }
         }
 
-        private void btnBufferedStream_Click(object sender, RoutedEventArgs e)
+        private void WriteToBuffered_Click(object sender, RoutedEventArgs e)
         {
             string filePath = "testfile.txt";
-            using (FileStream fs = new FileStream(filePath, FileMode.Create))
-            using (BufferedStream bs = new BufferedStream(fs))
-            using (CountingStreamDecorator countingStream = new CountingStreamDecorator(bs))
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+            using (BufferedStream bufferedStream = new BufferedStream(fileStream))
+            using (CountingStreamDecorator countingStream = new CountingStreamDecorator(bufferedStream))
             {
-                byte[] data = Encoding.UTF8.GetBytes("Это BufferedStream!");
+                byte[] data = Encoding.UTF8.GetBytes("Hello, BufferedStream!");
                 countingStream.Write(data, 0, data.Length);
                 UpdateTotalBytesWritten(countingStream.TotalBytesWritten);
             }
-            UpdateFileContent(File.ReadAllText(filePath));
         }
     }
 }
