@@ -1,12 +1,17 @@
-﻿<Window x:Class="DecorateLab_1_4_sem_.MainWindow"
+﻿<Window x:Class="StreamDecoratorDemo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DecorateLab_1_4_sem_"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Stream Decorator Demo" Height="350" Width="500">
     <Grid>
-        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="btnFileStream" Content="Write to FileStream" Click="btnFileStream_Click" Margin="5"/>
+            <Button x:Name="btnMemoryStream" Content="Write to MemoryStream" Click="btnMemoryStream_Click" Margin="5"/>
+            <Button x:Name="btnBufferedStream" Content="Write to BufferedStream" Click="btnBufferedStream_Click" Margin="5"/>
+            <TextBlock x:Name="txtTotalBytesWritten" Text="Total Bytes Written: 0" Margin="5"/>
+            <TextBlock x:Name="txtFileContent" TextWrapping="Wrap" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Window>

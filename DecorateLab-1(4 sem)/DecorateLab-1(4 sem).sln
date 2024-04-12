@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecorateLab-1(4 sem)", "DecorateLab-1(4 sem).csproj", "{03F0D509-3703-4B0E-BCAC-CC13CACC5572}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecorateLibrary", "..\DecorateLibrary\DecorateLibrary.csproj", "{43274E75-5289-4F04-AE05-15F222182343}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{03F0D509-3703-4B0E-BCAC-CC13CACC5572}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03F0D509-3703-4B0E-BCAC-CC13CACC5572}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03F0D509-3703-4B0E-BCAC-CC13CACC5572}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43274E75-5289-4F04-AE05-15F222182343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43274E75-5289-4F04-AE05-15F222182343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43274E75-5289-4F04-AE05-15F222182343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43274E75-5289-4F04-AE05-15F222182343}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
